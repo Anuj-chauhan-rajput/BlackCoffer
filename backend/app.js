@@ -39,6 +39,17 @@ app.get("/create-admin", async (req, res) => {
   }
 });
 
+const path = require("path");
+
+// ✅ Serve frontend build (adjust if needed)
+app.use(express.static(path.join(__dirname, "../frontend/dist"))); // or '../frontend/build'
+
+// ✅ Catch-all route to serve React app
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../frontend/dist/index.html")); // or ../frontend/build/index.html
+});
+
+
 // Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
