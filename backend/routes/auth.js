@@ -1,13 +1,16 @@
-const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
 
-// Dummy login — accepts ANY email + password
+// ✅ TEST ROUTE
+router.get("/test", (req, res) => {
+  res.json({ status: "✅ /api/auth is working!" });
+});
+
+// 🔐 Dummy Login Route (if you're keeping this)
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
   if (email && password) {
-    console.log("✅ Dummy login success for:", email);
-    return res.json({ success: true, token: "demo-token" }); // Dummy token
+    return res.json({ token: "dummy-token" });
   } else {
     return res.status(400).json({ msg: "Missing credentials" });
   }
