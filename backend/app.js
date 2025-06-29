@@ -22,6 +22,7 @@ app.use(express.json());
 // Routes
 app.use("/api", dataRoutes);      // e.g. /api/data
 app.use("/api/auth", authRoutes); // ✅ /api/auth/login
+app.use("/api/auth", require("./routes/auth"));
 
 // ✅ TEMP route to create admin user
 app.get("/create-admin", async (req, res) => {
