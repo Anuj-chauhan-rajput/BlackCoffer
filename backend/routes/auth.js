@@ -1,13 +1,15 @@
-const router = require("express").Router();
+const express = require("express");
+const router = express.Router();
 
-// Dummy login (no DB, no password hash, no JWT)
+// Dummy login — accepts ANY email + password
 router.post("/login", (req, res) => {
   const { email, password } = req.body;
 
-  if (email === "admin@demo.com" && password === "admin123") {
-    return res.json({ success: true, token: "demo-token" }); // No real JWT
+  if (email && password) {
+    console.log("✅ Dummy login success for:", email);
+    return res.json({ success: true, token: "demo-token" }); // Dummy token
   } else {
-    return res.status(401).json({ msg: "Invalid credentials" });
+    return res.status(400).json({ msg: "Missing credentials" });
   }
 });
 
