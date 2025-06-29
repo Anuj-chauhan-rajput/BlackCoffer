@@ -17,8 +17,10 @@ const Login = () => {
       const res = await axios.post(`${API_BASE_URL}/api/auth/login`, form);
       localStorage.setItem("token", res.data.token);
       navigate("/dashboard");
+      console.log("🌐 API Base URL:", API_BASE_URL);
     } catch (err) {
       alert("Invalid email or password");
+      console.log("🌐 API Base URL:", API_BASE_URL);
     }
   };
 
@@ -35,6 +37,8 @@ const Login = () => {
       <div className="login-right">
       <h2>Welcome Back 👋</h2>
       <p className="login-subtext">Please sign in to continue</p>
+      
+
 
       <div className="login-demo-info">
      <div><strong>Email:</strong> admin@demo.com</div>
