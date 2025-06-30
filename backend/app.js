@@ -45,22 +45,6 @@ app.get("/create-admin", async (req, res) => {
 });
 
 
-const path = require("path");
-
-// Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, "../frontend/build")));
-
-// Handles any requests that don't match the API routes
-app.get("*", (req, res) => {
-  if (req.originalUrl.startsWith("/api")) {
-    return res.status(404).json({ msg: "API route not found" });
-  }
-  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
-});
-
-
-
-
 
 
 // Start server
