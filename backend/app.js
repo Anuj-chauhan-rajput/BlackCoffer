@@ -20,10 +20,15 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
+console.log("🔌 Mounting /api");
 app.use("/api", dataRoutes);      // e.g. /api/data
+
+
+console.log("🔐 Mounting /api/auth");
 app.use("/api/auth", authRoutes); // ✅ /api/auth/login
 
 // ✅ TEMP route to create admin user
+console.log("👤 Mounting /create-admin");
 app.get("/create-admin", async (req, res) => {
   try {
     const existing = await User.findOne({ email: "admin@demo.com" });
@@ -39,15 +44,23 @@ app.get("/create-admin", async (req, res) => {
   }
 });
 
+
 const path = require("path");
 
-// ✅ Serve frontend build (adjust if needed)
-app.use(express.static(path.join(__dirname, "../frontend/dist"))); // or '../frontend/build'
+// Serve static files from frontend build
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
-// ✅ Catch-all route to serve React app
-app.get("/login", (req, res) => {
-  res.sendFile(path.join(__dirname, "../frontend/dist/index.html")); // or ../frontend/build/index.html
+// Catch-all route for React (after API routes)
+app.use((req, res, next) => {
+  if (req.originalUrl.startsWith("/api")) {
+    return res.status(404).json({ msg: "API route not found" });
+  }
+
+  res.sendFile(path.join(__dirname, "../frontend/build/index.html"));
 });
+
+
+
 
 
 // Start server
