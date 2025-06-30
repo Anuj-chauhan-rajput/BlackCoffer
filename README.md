@@ -10,8 +10,8 @@ A powerful, interactive web dashboard built using **MERN Stack** (MongoDB, Expre
 
 ## 🚀 Live Demo
 
-🌍 **Frontend (Vercel)**: [https://your-vercel-app.vercel.app](https://your-vercel-app.vercel.app)  
-🌐 **Backend (Render)**: [https://your-backend-api.onrender.com](https://your-backend-api.onrender.com)
+🌍 **Frontend (Render)**: https://blackcoffer-1-2b52.onrender.com 
+🌐 **Backend (Render)**: https://blackcoffer-r36h.onrender.com
 
 ---
 
